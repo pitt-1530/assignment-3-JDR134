@@ -8,7 +8,7 @@ import java.util.Arrays;
 public class PlaylistRecommenderTest {
 
     @Test
-    public void testNormalizeVolume() {
+    public void testIsValidTrackTitle() {
         assertTrue(PlaylistRecommender.isValidTrackTitle("Dream On"));
         assertFalse(PlaylistRecommender.isValidTrackTitle("2 Dream On"));
         assertFalse(PlaylistRecommender.isValidTrackTitle("Dream On!"));
@@ -20,5 +20,12 @@ public class PlaylistRecommenderTest {
         assertEquals("LOW", PlaylistRecommender.classifyEnergy(Arrays.asList(24, 34, 44)));
         assertEquals("MEDIUM", PlaylistRecommender.classifyEnergy(Arrays.asList(124, 134, 144)));
         assertEquals("HIGH", PlaylistRecommender.classifyEnergy(Arrays.asList(141, 144, 154)));
+    }
+
+    @Test
+    public void testNormalizeVolume() {
+        assertEquals(100, PlaylistRecommender.normalizeVolume(120));
+        assertEquals(43, PlaylistRecommender.normalizeVolume(43));
+        assertEquals(0, PlaylistRecommender.normalizeVolume(-10));
     }
 }
